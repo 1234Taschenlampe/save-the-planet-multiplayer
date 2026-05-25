@@ -1,0 +1,44 @@
+name: Build MakeCode Pages Binary
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - main.ts
+      - pxt.json
+      - tilemap.g.ts
+      - tilemap.g.jres
+      - .github/workflows/build-pages-binary.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-pages-binary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install MakeCode Arcade target
+        run: npm install pxt-arcade@4.1.4 --no-audit --no-fund
+      - name: Build simulator JavaScript
+        run: |
+          node -e "const path=require('path'); require('./node_modules/pxt-core/built/pxt.js').mainCli(path.resolve('./node_modules/pxt-arcade'), ['install']).catch(e=>{console.error(e);process.exit(1)})"
+          node -e "const path=require('path'); require('./node_modules/pxt-core/built/pxt.js').mainCli(path.resolve('./node_modules/pxt-arcade'), ['build','--ignoreTests']).catch(e=>{console.error(e);process.exit(1)})"
+          cp built/debug/binary.js assets/js/binary.js
+          echo "$(date +%s)" > assets/version.txt
+      - name: Commit generated Pages binary
+        run: |
+          if git diff --quiet -- assets/js/binary.js assets/version.txt; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/binary.js assets/version.txt
+          git commit -m "Build updated Pages game binary"
+          git push

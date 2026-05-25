@@ -1,33 +1,53 @@
- 
+# Save The Planet Multiplayer
 
+Ein Zwei-Spieler-MakeCode-Arcade-Spiel: Beide Spieler verteidigen den Planeten gegen Smog, Schrott und gepanzerte Weltraumtrümmer. Die Steuerung bleibt bewusst schlicht, damit sich das Spiel wie vorher anfühlt, aber Grafik, Gegnerlogik, Effekte und Spieltempo sind überarbeitet.
 
-> Diese Seite bei [https://1234taschenlampe.github.io/save-the-planet-multiplayer/](https://1234taschenlampe.github.io/save-the-planet-multiplayer/) öffnen
+## Spielen
 
-## Als Erweiterung verwenden
+Die veröffentlichte Version läuft über GitHub Pages:
 
-Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
+[https://1234taschenlampe.github.io/save-the-planet-multiplayer/](https://1234taschenlampe.github.io/save-the-planet-multiplayer/)
 
-* öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* klicke auf **Neues Projekt**
-* klicke auf **Erweiterungen** unter dem Zahnrad-Menü
-* nach **https://github.com/1234taschenlampe/save-the-planet-multiplayer** suchen und importieren
+## Steuerung
 
-## Dieses Projekt bearbeiten ![Build status badge](https://github.com/1234taschenlampe/save-the-planet-multiplayer/workflows/MakeCode/badge.svg)
+- Spieler 1 bewegt sich mit der Standard-Spieler-1-Steuerung.
+- Spieler 1 schießt mit `A`.
+- Spieler 2 bewegt sich mit der Standard-Spieler-2-Steuerung.
+- Spieler 2 schießt mit `A`.
 
-Um dieses Repository in MakeCode zu bearbeiten.
+Es wurden keine neuen Pflicht-Tasten hinzugefügt und keine bestehenden Eingaben geändert.
 
-* öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* klicke auf **Importieren** und dann auf **Importiere URL**
-* füge **https://github.com/1234taschenlampe/save-the-planet-multiplayer** ein und klicke auf Importieren
+## Was neu ist
 
-## Blocks preview
+- Detailliertere Eco-Sci-Fi-Grafik für Schiffe, Projektile, Gegner, Reparaturkerne und Planet.
+- Wave-System mit steigender Schwierigkeit.
+- Mehr Gegnertypen: Smog, Schrott und gepanzerter Schrott.
+- Reparaturkerne füllen den Planetenschutz wieder auf.
+- Kurze Unverwundbarkeit nach Treffern verhindert unfair schnellen Lebensverlust.
+- Punkte werden dem Spieler zugeordnet, der das Ziel trifft.
+- Aufgeräumtes TypeScript-Projekt: `main.ts` ist die gepflegte Hauptquelle.
 
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
+## Projekt bearbeiten
 
-![A rendered view of the blocks](https://github.com/1234taschenlampe/save-the-planet-multiplayer/raw/master/.github/makecode/blocks.png)
+Dieses Repository kann in MakeCode Arcade importiert werden:
 
-#### Metadaten (verwendet für Suche, Rendering)
+1. [https://arcade.makecode.com/](https://arcade.makecode.com/) öffnen.
+2. **Importieren** auswählen.
+3. **Importiere URL** wählen.
+4. `https://github.com/1234taschenlampe/save-the-planet-multiplayer` einfügen.
 
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+Das Projekt ist jetzt auf TypeScript-Bearbeitung ausgelegt. Alte Block- und Python-Zwischenstände wurden entfernt, damit keine veralteten Quellen im Repository liegen.
+
+## Build
+
+Mit installiertem MakeCode/PXT:
+
+```sh
+pxt build
+pxt test
+```
+
+## Metadaten
+
+- Ziel: MakeCode Arcade / PXT
+- Gepflegte Quelle: `main.ts`
